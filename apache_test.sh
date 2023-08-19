@@ -1,15 +1,16 @@
 #!/bin/bash
 
+#set script into debug mode
 set -x
 
 #date & time stored on file to check
-date >> script_run_log
-
+value=$(date)
+echo "Date that script run $value"
 # check the apache service is running or not
 
 ls /var/run/httpd/httpd.pid
 
-if [ $? -eq 0 ]
+if [ -f /var/run/httpd/httpd.pid ]
 then
 	echo "this service is working great"
 else
