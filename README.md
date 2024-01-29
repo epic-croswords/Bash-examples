@@ -1,5 +1,5 @@
 files:
-    - apache_test.sh: checking status about the service if it is down then try to start or contact to admin \n
+    - apache_test.sh: checking status about the service if it is down then try to start or contact to admin
     - if_else.sh: if else conditioning basic example
     - loooooooop.sh: Languages that print one by one
     - loops_for_useradd.sh: from loop adding users to linux
