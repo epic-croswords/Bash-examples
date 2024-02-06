@@ -34,5 +34,9 @@ sudo systemctl enable jenkins
 sudo systemctl start jenkins
 sudo systemctl status jenkins
 
+sudo usermod -aG docker jenkins
+sudo usermod -aG docker ubuntu
+systemctl restart docker
+
 #installing running sonarqube community docker container.
 docker run -itd -p 9000:9000 sonarqube:lts-community 
