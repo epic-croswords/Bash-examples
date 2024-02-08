@@ -13,7 +13,7 @@ sudo apt-get install maven -y
 sudo apt-get install ca-certificate curl gnupg -y 
 sudo apt-get install docker.io docker-compose -y 
 sudo apt-get install vim -y
-sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-17-jdk -y
 
 #service start-enable docker 
 sudo systemctl enable docker
