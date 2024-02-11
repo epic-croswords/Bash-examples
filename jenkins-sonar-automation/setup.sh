@@ -39,4 +39,38 @@ sudo usermod -aG docker ubuntu
 sudo systemctl restart docker
 
 #installing running sonarqube community docker container.
-docker run -itd -p 9000:9000 sonarqube:lts-community 
+docker run -itd -p 9000:9000 sonarqube:lts-community
+
+echo "press 0 for install, 1 for quit"
+read $NUM
+
+sleep 1
+if [[ $NUM -eq 0 ]]
+then
+
+echo "" 
+echo "installing dependancy tru apt"
+sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+
+echo ""
+echo ""
+echo "adding repo of trivy"
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+echo ""
+echo ""
+
+echo "repo update again"
+sudo apt-get update
+
+echo ""
+echo "installing trivy"
+sudo apt-get install trivy
+
+elif [[ $NUM -eq 1 ]]
+then
+	exit 0
+	
+else 
+	echo "off"
+fi
