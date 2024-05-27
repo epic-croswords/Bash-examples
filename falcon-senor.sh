@@ -1,14 +1,19 @@
 #!/bin/bash
 set -x 
 
+#variables
+URL_rpm=https://isrcportal.magna.global/repo/CrowdStrike/Linux/latest/falcon-sensor-7.11.0-16405.el7.x86_64.rpm
+URL_deb=https://isrcportal.magna.global/repo/CrowdStrike/Linux/latest/falcon-sensor_7.11.0-16405_amd64.deb
+CID=
+
 cd /tmp
 os-release=awk -F= '/^ID=/ {gsub(/"/, "", $2); print $2}' /etc/os-release
-if [ "$os-release" == "redhat"]; then
-wget https://isrcportal.magna.global/repo/CrowdStrike/Linux/latest/falcon-sensor-7.11.0-16405.el7.x86_64.rpm --no-check-certificate
+if [ "$os-release" == "redhat" -o "$os-release" == "centos"]; then
+wget "$URL_rpm" --no-check-certificate
 
 chmod 777 falcon-sensor-7.11.0-16405.el7.x86_64.rpm
 yum localinstall falcon-sensor-7.11.0-16405.el7.x86_64.rpm -y
-sudo /opt/CrowdStrike/falconctl -s --cid=
+sudo /opt/CrowdStrike/falconctl -s --cid="$CID"
 
 systemctl enable falcon-sensor
 systemctl start falcon-sensor
@@ -16,10 +21,10 @@ systemctl status falcon-sensor
 else 
 
 cd /tmp
-wget https://isrcportal.magna.global/repo/CrowdStrike/Linux/latest/falcon-sensor_7.11.0-16405_amd64.deb --no-check-certificate
+wget "$URL_deb" --no-check-certificate
 chmod 777 falcon-sensor_7.11.0-16405_amd64.deb
 dpkg -i falcon-sensor_7.11.0-16405_amd64.deb
-sudo /opt/CrowdStrike/falconctl -s --cid=
+sudo /opt/CrowdStrike/falconctl -s --cid="$CID"
 
 systemctl enable falcon-sensor
 systemctl start falcon-sensor
