@@ -1,6 +1,7 @@
 # Refrance: https://docs.aws.amazon.com/cli/latest/ 
+```
 # Iam role
-``` aws iam create-role \
+ aws iam create-role \
     --role-name EKSClusterRole \
     --assume-role-policy-document file://EKSClusterRole.json 
 
