@@ -48,9 +48,9 @@ aws eks create-nodegroup \
     --node-role EKSNodeGroupRole \
     --subnets "subnet-0e2907431c9988b72" "subnet-04ad87f71c6e5ab4d" "subnet-09d912bb63ef21b9a" \
     --scaling-config minSize=1,maxSize=3,desiredSize=1 \
-    --region ap-south- \
-    --instance-types 't2.micro' \
-    --ami-type AL2_x86_64 \ 
+    --region ap-south \
+    --instance-types "t2.micro" \
+    --ami-type "ami-00fa32593b478ad6e"
 
 # describe  eks node-group
 
@@ -74,8 +74,8 @@ aws eks delete-nodegroup \
 aws eks create-cluster \
     --name Zomato-demo-cluster \
     --region ap-south-1 \
-    --role-arn arn:aws:iam::900866925774:role/EKSClusterRole \
-    --resources-vpc-config subnetIds=subnet-049162076a2fde04b,subnet-001b2b091c7fb10b8,securityGroupIds=sg-0bfbeaa33359645a9 \
+    --role-arn arn:aws:iam::211125481124:role/EKSClusterRole \
+    --resources-vpc-config subnetIds=subnet-0390a8c068acf0eee,securityGroupIds=sg-0bfbeaa33359645a9 \
     --kubernetes-version "1.28"
 
 # Describe EKS cluster
