@@ -43,7 +43,7 @@ aws iam list-attached-role-policies --role-name EKSClusterRole
 # eks node group (EC2)
 ```
 aws eks create-nodegroup \
-    --cluster-name Zomatodemo-cluster \
+    --cluster-name Zomato-demo-cluster \
     --nodegroup-name zomatodemo-eks-nodegroup \
     --node-role EKSNodeGroupRole \
     --subnets "subnet-0e2907431c9988b72" "subnet-04ad87f71c6e5ab4d" "subnet-09d912bb63ef21b9a" \
@@ -75,7 +75,7 @@ aws eks create-cluster \
     --name Zomato-demo-cluster \
     --region ap-south-1 \
     --role-arn arn:aws:iam::211125481124:role/EKSClusterRole \
-    --resources-vpc-config subnetIds=subnet-0390a8c068acf0eee,securityGroupIds=sg-0bfbeaa33359645a9 \
+    --resources-vpc-config subnetIds=subnet-0390a8c068acf0eee,subnet-030f37c4c7c8c0bee,securityGroupIds=sg-0cc346d6d8fb8b543 \
     --kubernetes-version "1.28"
 
 # Describe EKS cluster
