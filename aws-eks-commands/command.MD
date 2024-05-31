@@ -31,8 +31,8 @@ aws iam attach-role-policy  \
 aws iam attach-role-policy  \
     --policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy \
     --role-name EKSNodeGroupRole
-
-
+```
+```
 # check the polices attached to that role 
 aws iam list-attached-role-policies --role-name EKSNodeGroupRol
 aws iam list-attached-role-policies --role-name EKSNodeGroupRole
