@@ -2,7 +2,7 @@
 # Iam role
 ``` aws iam create-role \
     --role-name EKSClusterRole \
-    --assume-role-policy-document file://EKSClusterRole.json ```
+    --assume-role-policy-document file://EKSClusterRole.json 
 
 aws iam create-role \
     --role-name EKSNodeGroupRole \
@@ -10,7 +10,7 @@ aws iam create-role \
 
 # list iam roles
     aws iam list-roles
-
+```
 ##############################################################################
 
 # IAM policy's attach to role
