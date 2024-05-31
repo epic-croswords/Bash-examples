@@ -34,7 +34,7 @@ aws iam attach-role-policy  \
 ```
 ```
 # check the polices attached to that role 
-aws iam list-attached-role-policies --role-name EKSNodeGroupRol
+aws iam list-attached-role-policies --role-name EKSNodeGroupRole
 aws iam list-attached-role-policies --role-name EKSNodeGroupRole
 
 ```
