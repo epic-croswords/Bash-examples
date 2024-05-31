@@ -68,9 +68,9 @@ aws eks delete-nodegroup \
 ```
 ###############################################################################################
 
-```
 # EKS cluster create
 
+```
 aws eks create-cluster \
     --name Zomato-demo-cluster \
     --region ap-south-1 \
