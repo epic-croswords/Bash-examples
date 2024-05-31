@@ -81,7 +81,7 @@ aws eks create-cluster \
 # Describe EKS cluster
 
 aws eks describe-cluster \
-    --cluster-name Zomato-demo-cluster
+    --name Zomato-demo-cluster
 
 # Delete EKS cluster
 aws eks delete-cluster \
