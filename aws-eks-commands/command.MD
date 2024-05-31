@@ -15,6 +15,7 @@ aws iam create-role \
 ##############################################################################
 
 # IAM policy's attach to role
+```
 aws iam attach-role-policy  \
     --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy \
     --role-name EKSClusterRole
@@ -36,10 +37,11 @@ aws iam attach-role-policy  \
 aws iam list-attached-role-policies --role-name EKSNodeGroupRol
 aws iam list-attached-role-policies --role-name EKSNodeGroupRole
 
+```
 ##################################################################################################
 
 # eks node group (EC2)
-
+```
 aws eks create-nodegroup \
     --cluster-name Zomatodemo-cluster \
     --nodegroup-name zomatodemo-eks-nodegroup \
@@ -63,10 +65,10 @@ aws eks delete-nodegroup \
     --cluster-name Zomatodemo-cluster \
     --nodegroup-name zomatodemo-eks-nodegroup
 
-
+```
 ###############################################################################################
 
-
+```
 # EKS cluster create
 
 aws eks create-cluster \
@@ -84,3 +86,4 @@ aws eks describe-cluster \
 # Delete EKS cluster
 aws eks delete-cluster \
     --name Zomato-demo-cluster
+```
