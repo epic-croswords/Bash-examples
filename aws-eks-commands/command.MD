@@ -45,17 +45,17 @@ aws iam list-attached-role-policies --role-name EKSClusterRole
 aws eks create-nodegroup \
     --cluster-name Zomato-demo-cluster \
     --nodegroup-name zomatodemo-eks-nodegroup \
-    --node-role EKSNodeGroupRole \
-    --subnets "subnet-0e2907431c9988b72" "subnet-04ad87f71c6e5ab4d" "subnet-09d912bb63ef21b9a" \
+    --node-role arn:aws:iam::211125481124:role/EKSNodeGroupRole \
+    --subnets "subnet-0fbc610fbefb0e635" "subnet-0390a8c068acf0eee" "subnet-030f37c4c7c8c0bee" \
     --scaling-config minSize=1,maxSize=3,desiredSize=1 \
-    --region ap-south \
+    --region ap-south-1 \
     --instance-types "t2.micro" \
-    --ami-type "ami-00fa32593b478ad6e"
+    --ami-type "AL2_x86_64"
 
 # describe  eks node-group
 
 aws eks describe-nodegroup \
-    --cluster-name Zomatodemo-cluster \
+    --cluster-name Zomato-demo-cluster \
     --nodegroup-name zomatodemo-eks-nodegroup
 
 
