@@ -87,3 +87,45 @@ aws eks describe-cluster \
 aws eks delete-cluster \
     --name Zomato-demo-cluster
 ```
+
+#####################################################################################
+
+# setup ingress controller service ac
+``
+aws iam create-policy \
+    --policy-name AWSLoadBalancerControllerIAMPolicy \
+    --policy-document file://AWSLoadBalancerControllerIAMPolicy.json
+``
+# create iam role for 
+``
+aws iam create-role \
+    --role-name AmazonEKSLoadBalancerControllerRole \
+    --assume-role-policy-document file://iam_trust.json
+``
+
+# attach role policy to iam role arn
+aws iam attach-role-policy \
+    --role-name AmazonEKSLoadBalancerControllerRole \
+    --policy-arn arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy
+
+#  associate iam role with service account 
+`` 
+eksctl create iamserviceaccount \
+  --cluster Zomato-demo-cluster \
+  --namespace kube-system \
+  --name aws-load-balancer-controller \
+  --attach-policy-arn arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy \
+  --approve
+``
+######################################################################################
+
+# IAM policies and three role's
+role:AWSServiceRoleForAmazonEKS
+ AmazonEKSServiceRolePolicy
+
+AWSServiceRoleForAmazonEKSForFargate
+ AmazonEKSForFargateServiceRolePolicy
+
+AWSServiceRoleForAmazonEKSNodegroup
+ AWSServiceRoleForAmazonEKSNodegroup
+ 
