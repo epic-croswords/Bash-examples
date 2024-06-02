@@ -53,18 +53,18 @@ aws eks create-nodegroup \
     --ami-type "AL2_x86_64"
 
 # describe  eks node-group
-
+``
 aws eks describe-nodegroup \
     --cluster-name Zomato-demo-cluster \
     --nodegroup-name zomatodemo-eks-nodegroup
-
+``
 
 # delete eks cluster
-
+``
 aws eks delete-nodegroup \
     --cluster-name Zomatodemo-cluster \
     --nodegroup-name zomatodemo-eks-nodegroup
-
+``
 ```
 ###############################################################################################
 
@@ -77,12 +77,12 @@ aws eks create-cluster \
     --role-arn arn:aws:iam::211125481124:role/EKSClusterRole \
     --resources-vpc-config subnetIds=subnet-0390a8c068acf0eee,subnet-030f37c4c7c8c0bee,securityGroupIds=sg-0cc346d6d8fb8b543 \
     --kubernetes-version "1.28"
-
+``
 # Describe EKS cluster
-
+``
 aws eks describe-cluster \
     --name Zomato-demo-cluster
-
+``
 # Delete EKS cluster
 aws eks delete-cluster \
     --name Zomato-demo-cluster
