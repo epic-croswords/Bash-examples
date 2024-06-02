@@ -104,10 +104,11 @@ aws iam create-role \
 ``
 
 # attach role policy to iam role arn
+``
 aws iam attach-role-policy \
     --role-name AmazonEKSLoadBalancerControllerRole \
     --policy-arn arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy
-
+``
 #  associate iam role with service account 
 `` 
 eksctl create iamserviceaccount \
