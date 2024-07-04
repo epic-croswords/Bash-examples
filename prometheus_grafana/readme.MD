@@ -5,7 +5,7 @@
 - node_exporter.yml: config file of node_exporter, nvidia_exporter, snmp_exporter, blackbox etc. 
 
 ### ``ports used by services``
-- 9100 : node exporter
+* 9100 : node exporter
 - 9835 : nvidia exporter
 - 9116 : SNMP exporter
 - 9115 : blackbox exporter
