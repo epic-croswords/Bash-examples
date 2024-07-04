@@ -6,6 +6,6 @@
 
 ### ``ports used by services``
 * 9100 : node exporter
-- 9835 : nvidia exporter
-- 9116 : SNMP exporter
-- 9115 : blackbox exporter
+* 9835 : nvidia exporter
+* 9116 : SNMP exporter
+* 9115 : blackbox exporter
