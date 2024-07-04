@@ -1,0 +1,46 @@
+---
+- name: download/install/run nvidia exporter
+  hosts: cae
+  become: yes
+  gather_facts: true
+  remote_user: root
+  tasks:
+    - name: downlaod new files as per the os
+      shell: |
+        wget https://github.com/utkuozdemir/nvidia_gpu_exporter/releases/download/v1.2.1/nvidia-gpu-exporter_1.2.1_linux_amd64.rpm
+        chmod 777 nvidia-gpu-exporter_1.2.1_linux_amd64.rpm
+        rpm -i nvidia-gpu-exporter_1.2.1_linux_amd64.rpm
+      register: installing_redhat
+      when: ansible_facts['os_family'] == "Red Hat Enterprise Linux Server"
+      ignore_errors: true
+
+    - name: debug rhel massage
+      debug:
+        msg: installing_redhat.stdout
+
+    - name: downlaod new file for ubuntu
+      shell: |
+        wget https://github.com/utkuozdemir/nvidia_gpu_exporter/releases/download/v1.2.1/nvidia-gpu-exporter_1.2.1_linux_amd64.deb
+        chmod 777 nvidia-gpu-exporter_1.2.1_linux_amd64.deb
+        dpkg -i nvidia-gpu-exporter_1.1.0_linux_amd64.deb
+      register: installing_ubuntu
+      when: ansible_facts['os_family'] == "Ubuntu 22.04.4 LTS"
+      ignore_errors: true
+
+    
+    - name: debug rhel massage
+      debug:
+        msg: installing_ubuntu.stdout
+  
+    - name: enable services
+      shell: |
+        systemctl enable nvidia_gpu_exporter.service
+        systemctl start nvidia_gpu_exporter.service
+    
+    - name: service check 
+      shell: "systemctl status nvidia_gpu_exporter.service"
+      register: service_enabled
+
+    - name: service debug
+      debug:
+        msg: service_enabled.stdout
