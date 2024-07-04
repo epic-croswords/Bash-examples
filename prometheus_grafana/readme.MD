@@ -11,3 +11,9 @@
 - **9835** nvidia exporter
 - **9116** SNMP exporter
 - **9115** blackbox exporter
+
+### ``Links to donwload exporters and there repo``
+- Node exporter [link](https://github.com/prometheus/node_exporter).
+- Nvidia exporter [link](https://github.com/utkuozdemir/nvidia_gpu_exporter).
+- SNMP exporter [link](https://github.com/prometheus/snmp_exporter).
+- blackbox and any other exporters [link](https://prometheus.io/download/).
