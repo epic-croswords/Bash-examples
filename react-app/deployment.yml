@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-testing
+  labels:
+    app: nginx-testing
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-testing
+  template:
+    metadata:
+      labels:
+        app: nginx-testing
+    spec:
+      containers:
+      - name: react
+        image: manlineroot12/react-app:latest
+        ports:
+        - containerPort: 80

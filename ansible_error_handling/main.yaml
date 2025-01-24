@@ -1,0 +1,16 @@
+---
+  - name: install openssl and openssh service
+    hosts: all
+    become: yes
+    tasks:
+        - name: install pakages      
+          ansible.builtin.yum:
+            - name: "{{ item }}"
+              state: present
+              loop:
+                - openssl
+                - openssh
+              register: install_packages
+        
+        - debug:
+          var: install_packages

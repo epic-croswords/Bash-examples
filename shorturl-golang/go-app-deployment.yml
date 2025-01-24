@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: go-app-deployment
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/maheshz09/shorturl-golang.git'
+    targetRevision: main
+    path: kuberenetes/mainfests
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

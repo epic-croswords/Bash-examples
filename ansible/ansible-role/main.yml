@@ -1,0 +1,7 @@
+---
+- hosts: webservers
+  roles:
+    - apache
+  import_tasks:
+    - task/main.yml
+    

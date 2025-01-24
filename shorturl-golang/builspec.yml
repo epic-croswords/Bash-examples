@@ -1,0 +1,36 @@
+version: 0.2
+run-as: root
+ 
+env: 
+  parameter-store:
+    DOCKER_REGISTRY_USERNAME: /docker/python-project/username
+    DOCKER_REGISTRY_PASSWORD: /docker/python-project/password
+    DOCKER_REGISTRY_URL: /docker/python-project/url
+
+phases:
+  install: 
+    commands:
+      - echo Installing dependencies...
+      - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      - chmod +x kubectl
+      - mv kubectl /usr/local/bin/
+  pre_build:
+    commands:
+      - echo "Logging to DockerHub"
+      - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin $DOCKER_REGISTRY_URL
+      - aws sts get-caller-identity
+      - aws eks update-kubeconfig --region ap-south-1 --name demo-eks-cluster
+      - kubectl config current-context
+  
+  build:
+    commands: 
+      - echo "Building Docker Image"
+      - docker build -t "$DOCKER_REGISTRY_USERNAME/short_url:$CODEBUILD_RESOLVED_SOURCE_VERSION" .
+      - docker push "$DOCKER_REGISTRY_USERNAME/short_url:$CODEBUILD_RESOLVED_SOURCE_VERSION"
+
+  post_build:
+    commands:
+      - echo "Docker Image is Pushed"
+      - echo "Deploying the application to EKS"
+      - kubectl set image deployment/shorturl shortenurlapp=$DOCKER_USERNAME/short_url:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - kubectl get svc

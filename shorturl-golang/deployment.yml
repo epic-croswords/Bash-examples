@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shorturl-app
+  labels:
+    app: shorturl-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: shorturl-app
+  template:
+    metadata:
+      labels:
+        app: shorturl-app
+    spec:
+      containers:
+      - name: shorturl
+        image: manlineroot12/golang-shorturl-app:latest
+        resources:
+          memory: "128Mi"
+          cpu: "500m"
+        ports:
+        - containerPort: 8080
